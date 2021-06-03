@@ -1,0 +1,29 @@
+name: vault-env
+author: bn-digital
+description: Populates .env file with values, provided by Hashicorp's Vault
+branding:
+  icon: 'cloud'
+  color: 'gray-dark'
+runs:
+  main: build/action.js
+  using: 'node12'
+inputs:
+  endpoint:
+    required: true
+    description: 'Vault endpoint, e.g. https://vault.your-company.com.'
+  template:
+    default: .env.dist
+    required: false
+    description: 'Dotenv template file in project root to read key=value pairs from'
+  target:
+    default: .env
+    required: false
+    description: 'Dotenv template file in project root to read key=value pairs from'
+  provider:
+    default: github
+    required: false
+    description: 'Authentication provider (currently supported: github)'
+  token:
+    default: ''
+    required: false
+    description: 'Authentication token used by Vault to auth with specified provider'

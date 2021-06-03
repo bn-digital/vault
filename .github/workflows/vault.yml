@@ -1,0 +1,15 @@
+name: Vault
+on:
+  - push
+jobs:
+  env:
+    name: Dump .env
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Populate .env
+        uses: bn-digital/vault-env@latest
+        with:
+          endpoint:
