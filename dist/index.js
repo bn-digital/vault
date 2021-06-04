@@ -15417,10 +15417,9 @@ var VaultEnv = /** @class */ (function () {
      * @param auth
      */
     function VaultEnv(endpoint, auth) {
-        var _a;
-        var vault = node_vault_1.default({ endpoint: endpoint !== null && endpoint !== void 0 ? endpoint : process.env.VAULT_ENDPOINT });
+        this.vault = node_vault_1.default({ endpoint: endpoint });
         if (auth.provider === 'github') {
-            this.vault = vault.githubLogin({ token: (_a = auth.token) !== null && _a !== void 0 ? _a : process.env.GITHUB_TOKEN });
+            this.client = this.vault.githubLogin({ token: auth.token });
         }
     }
     /**
@@ -15430,15 +15429,21 @@ var VaultEnv = /** @class */ (function () {
      */
     VaultEnv.prototype.populate = function (from, to) {
         var _this = this;
-        var distPath = path_1.default.resolve(__dirname, from);
-        var envPath = path_1.default.resolve(__dirname, to);
+        var distPath = path_1.default.resolve(from);
+        var envPath = path_1.default.resolve(to);
         fs_1.default.writeFileSync(envPath, '');
         if (distPath) {
             var template = dotenv_1.config({ path: distPath }).parsed;
-            Object.entries(template).forEach(function (_a) {
-                var key = _a[0], value = _a[1];
-                _this.readSecret(value).then(function (secret) { return fs_1.default.appendFile(envPath, key + "=" + secret + "\n", function (error) { return error && console.log(error); }); });
-            });
+            if (template) {
+                Object.entries(template).forEach(function (_a) {
+                    var key = _a[0], value = _a[1];
+                    console.log("Setting " + key + " from " + value);
+                    _this.readSecret(value).then(function (secret) { return fs_1.default.appendFile(envPath, key + "=" + secret + "\n", function (error) { return error && console.log(error); }); });
+                });
+            }
+            else {
+                console.warn('No template provided');
+            }
         }
         else {
             throw new Error("No template file available at " + distPath);
@@ -15451,6 +15456,7 @@ var VaultEnv = /** @class */ (function () {
     VaultEnv.prototype.readSecret = function (path) {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             var chunks, root, searchKey, secretPath;
+            var _this = this;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -15459,8 +15465,8 @@ var VaultEnv = /** @class */ (function () {
                         searchKey = chunks.pop();
                         chunks.unshift(root, 'data');
                         secretPath = chunks.join('/');
-                        return [4 /*yield*/, this.vault
-                                .then(function (client) { return client.read(secretPath); })
+                        return [4 /*yield*/, this.client
+                                .then(function () { return _this.vault.read(secretPath); })
                                 .then(function (secret) { return secret.data.data[searchKey]; })
                                 .catch(console.log)];
                     case 1: return [2 /*return*/, _a.sent()];

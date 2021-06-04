@@ -15,17 +15,18 @@ export type CommandLineArgs = OptionValues & {
 }
 
 export default class VaultEnv {
-  private readonly vault: Promise<client>
+  private readonly vault: client
+  private readonly client: Promise<client>
 
   /**
    * @param endpoint
    * @param auth
    */
   constructor(endpoint: string, auth: { provider: string; token: string }) {
-    const vault = NodeVault({ endpoint: endpoint ?? process.env.VAULT_ENDPOINT })
+    this.vault = NodeVault({ endpoint: endpoint })
 
     if (auth.provider === 'github') {
-      this.vault = vault.githubLogin({ token: auth.token ?? process.env.GITHUB_TOKEN })
+      this.client = this.vault.githubLogin({ token: auth.token })
     }
   }
 
@@ -35,15 +36,20 @@ export default class VaultEnv {
    * @param to
    */
   populate(from: string, to: string): void {
-    const distPath = path.resolve(__dirname, from)
-    const envPath = path.resolve(__dirname, to)
+    const distPath = path.resolve(from)
+    const envPath = path.resolve(to)
     fs.writeFileSync(envPath, '')
 
     if (distPath) {
       const template = config({ path: distPath }).parsed
-      Object.entries(template).forEach(([key, value]) => {
-        this.readSecret(value).then((secret) => fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && console.log(error)))
-      })
+      if (template) {
+        Object.entries(template).forEach(([key, value]) => {
+          console.log(`Setting ${key} from ${value}`)
+          this.readSecret(value).then((secret) => fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && console.log(error)))
+        })
+      } else {
+        console.warn('No template provided')
+      }
     } else {
       throw new Error(`No template file available at ${distPath}`)
     }
@@ -59,8 +65,8 @@ export default class VaultEnv {
     const searchKey = chunks.pop()
     chunks.unshift(root, 'data')
     const secretPath = chunks.join('/')
-    return await this.vault
-      .then((client) => client.read(secretPath))
+    return await this.client
+      .then(() => this.vault.read(secretPath))
       .then((secret) => secret.data.data[searchKey])
       .catch(console.log)
   }
