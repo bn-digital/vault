@@ -3,7 +3,6 @@ import VaultEnv, { CommandLineArgs } from './index'
 import { config } from 'dotenv'
 
 config()
-
 const program = new Command()
 
 program

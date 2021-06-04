@@ -1,6 +1,14 @@
 # Vault .env
 
-Populates .env file with values, provided by Hashicorp's Vault
+Populates .env file with values, provided by Hashicorp's Vault. 
+
+## Features
+
+- Uses Github token for authenticating in Vault
+- Fetch secret value by provided path
+- Updates only provided environment variables 
+- Sort alphabetically target `.env` file
+- Could be used as cli or part of github workflow 
 
 ## Usage
 
@@ -9,7 +17,7 @@ Populates .env file with values, provided by Hashicorp's Vault
 1. Install package
 
 ```shell
-yarn add vault-env
+yarn add @bn-digital/vault-env
 ```
 2. Create template file with key=value structure, where `key` - desired environment variable name, and value - full variable path in Vault
 

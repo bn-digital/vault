@@ -2,7 +2,7 @@ name: vault-env
 author: bn-digital
 description: Populates .env file with values, provided by Hashicorp's Vault
 branding:
-  icon: 'cloud'
+  icon: 'unlock'
   color: 'gray-dark'
 runs:
   main: dist/index.js

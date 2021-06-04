@@ -34,6 +34,7 @@
     "build": "tsc && ncc build src/action.ts"
   },
   "dependencies": {
+    "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "dotenv": "^10.0.0",
     "node-vault": "^0.9.21"

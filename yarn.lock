@@ -61,6 +61,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.26.0
     "@typescript-eslint/parser": ^4.26.0
     "@zeit/ncc": ^0.22.3
+    chalk: ^4.1.1
     commander: ^7.2.0
     conventional-changelog-eslint: ^3.0.9
     cross-env: ^7.0.3
@@ -1198,7 +1199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
   version: 4.1.1
   resolution: "chalk@npm:4.1.1"
   dependencies:
