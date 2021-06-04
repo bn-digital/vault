@@ -15433,17 +15433,22 @@ var VaultEnv = /** @class */ (function () {
         var envPath = path_1.default.resolve(to);
         fs_1.default.writeFileSync(envPath, '');
         if (distPath) {
+            var values_1 = {};
             var template = dotenv_1.config({ path: distPath }).parsed;
             if (template) {
                 Object.entries(template).forEach(function (_a) {
                     var key = _a[0], value = _a[1];
                     console.log("Setting " + key + " from " + value);
-                    _this.readSecret(value).then(function (secret) { return fs_1.default.appendFile(envPath, key + "=" + secret + "\n", function (error) { return error && console.log(error); }); });
+                    _this.readSecret(value).then(function (secret) {
+                        values_1[key] = value;
+                        fs_1.default.appendFile(envPath, key + "=" + secret + "\n", function (error) { return error && console.log(error); });
+                    });
                 });
             }
             else {
                 console.warn('No template provided');
             }
+            return values_1;
         }
         else {
             throw new Error("No template file available at " + distPath);

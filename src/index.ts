@@ -35,21 +35,25 @@ export default class VaultEnv {
    * @param from
    * @param to
    */
-  populate(from: string, to: string): void {
+  populate(from: string, to: string): { [key: string]: string } {
     const distPath = path.resolve(from)
     const envPath = path.resolve(to)
     fs.writeFileSync(envPath, '')
-
     if (distPath) {
+      const values: { [key: string]: string } = {}
       const template = config({ path: distPath }).parsed
       if (template) {
         Object.entries(template).forEach(([key, value]) => {
           console.log(`Setting ${key} from ${value}`)
-          this.readSecret(value).then((secret) => fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && console.log(error)))
+          this.readSecret(value).then((secret) => {
+            values[key] = value
+            fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && console.log(error))
+          })
         })
       } else {
         console.warn('No template provided')
       }
+      return values
     } else {
       throw new Error(`No template file available at ${distPath}`)
     }
