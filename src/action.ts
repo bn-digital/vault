@@ -3,7 +3,6 @@ import path from 'path'
 import VaultEnv from './index'
 import crypto from 'crypto'
 import { config } from 'dotenv'
-import { exec } from '@actions/exec'
 
 /**
  * Executes as Github Action entrypoint
@@ -21,7 +20,6 @@ async function run(): Promise<void> {
     Object.entries(values).map(([key, value]) =>
       info(`Created entry ${key} with hashed value ${crypto.createHash('sha256').update(value).digest()}`)
     )
-    exec('shasum', ['-a', '256', '.env']).then((value) => info(`Exited with code ${value}`))
   } catch (error) {
     setFailed(error.message)
   }

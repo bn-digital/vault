@@ -14,7 +14,7 @@ program
   )
   .option('-p, --provider [provider]', 'Authentication provider (currently supported: github)', 'github')
   .option('-d, --dist [dist]', 'Dotenv template file in project root to read key=value pairs from', '.env.dist')
-  .option('-f, --file [file]', 'Dotenv file in project root to write into', '.env.dev')
+  .option('-f, --file [file]', 'Dotenv file in project root to write into', '.env')
   .parse(process.argv)
 
 program.parse()
