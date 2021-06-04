@@ -1,4 +1,5 @@
 name: Vault
+permissions: read-all
 on:
   - push
 jobs:
