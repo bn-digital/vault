@@ -5,7 +5,7 @@ branding:
   icon: 'cloud'
   color: 'gray-dark'
 runs:
-  main: build/action.js
+  main: dist/index.js
   using: 'node12'
 inputs:
   endpoint:

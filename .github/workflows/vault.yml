@@ -12,4 +12,5 @@ jobs:
       - name: Populate .env
         uses: bn-digital/vault-env@latest
         with:
-          endpoint:
+          endpoint: ${{ secrets.VAULT_ENDPOINT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
