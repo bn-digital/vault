@@ -1,13 +1,15 @@
-import { getInput, info, setFailed, setSecret } from '@actions/core'
+import { getInput, info, setFailed } from '@actions/core'
 import path from 'path'
 import VaultEnv from './index'
-import { createHash } from 'crypto'
-import * as crypto from 'crypto'
+import crypto from 'crypto'
+import { config } from 'dotenv'
+import { exec } from '@actions/exec'
 
 /**
  * Executes as Github Action entrypoint
  */
 async function run(): Promise<void> {
+  config()
   const workspaceDir = process.env.GITHUB_WORKSPACE
   try {
     const vaultEnv = new VaultEnv(getInput('endpoint'), {
@@ -19,6 +21,7 @@ async function run(): Promise<void> {
     Object.entries(values).map(([key, value]) =>
       info(`Created entry ${key} with hashed value ${crypto.createHash('sha256').update(value).digest()}`)
     )
+    exec('shasum', ['-a', '256', '.env']).then((value) => info(`Exited with code ${value}`))
   } catch (error) {
     setFailed(error.message)
   }

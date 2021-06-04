@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "run": "ts-node src/cli.ts",
-    "build": "tsc && ncc build"
+    "build": "tsc && ncc build src/action.ts"
   },
   "dependencies": {
     "commander": "^7.2.0",

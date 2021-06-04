@@ -6,7 +6,6 @@
     "outDir": "build",
     "esModuleInterop": true,
     "declaration": true,
-    "incremental": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "lib": [
