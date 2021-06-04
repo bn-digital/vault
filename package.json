@@ -15,7 +15,9 @@
       "url": "https://github.com/vladyslavvolkov"
     }
   ],
-  "bin": "build/cli.js",
+  "bin": {
+    "vault-env": "build/cli.js"
+  },
   "publishConfig": {
     "access": "public"
   },
