@@ -1,7 +1,9 @@
 name: Vault
-permissions: read-all
 on:
-  - push
+  push:
+    paths:
+      - dist/index.js
+      - .github/workflows/vault.yml
 jobs:
   env:
     name: Dump .env
@@ -14,4 +16,4 @@ jobs:
         uses: bn-digital/vault-env@latest
         with:
           endpoint: ${{ secrets.VAULT_ENDPOINT }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
