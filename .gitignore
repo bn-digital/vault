@@ -6,3 +6,4 @@ build/
 !.env.dist
 .yarn/unplugged
 .yarn/install-state.gz
+.yarn/build-state.yml
