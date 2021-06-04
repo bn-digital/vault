@@ -2,8 +2,15 @@
 
 Populates .env file with values, provided by Hashicorp's Vault
 
-## Workflow example
+## Usage
 
+### CLI example
+
+```shell
+yarn vault-env -e https://vault.company.com -t $GITHUB_TOKEN -d .env.dist -f .env.dev
+```
+
+### Github Workflow example
 
 ```yaml
 name: Vault

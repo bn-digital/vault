@@ -2,7 +2,25 @@
   "name": "vault-env",
   "description": "Populates .env file with values, provided by Hashicorp's Vault",
   "version": "1.0.0",
-  "bin": "build/cli.js",
+  "readme": "README.md",
+  "author": {
+    "name": "Vlad Volkov",
+    "email": "vlad.volkov@bndigital.co",
+    "url": "https://github.com/vladyslavvolkov"
+  },
+  "maintainers": [
+    {
+      "name": "Vlad Volkov",
+      "email": "vlad.volkov@bndigital.co",
+      "url": "https://github.com/vladyslavvolkov"
+    }
+  ],
+  "bin": {
+    "vault-env": "build/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "build/index.js",
   "keywords": [
     "ci-cd",
@@ -13,6 +31,7 @@
   ],
   "scripts": {
     "run": "ts-node src/cli.ts",
+    "release": "semantic-release",
     "build": "tsc && ncc build src/action.ts"
   },
   "dependencies": {
