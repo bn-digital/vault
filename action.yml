@@ -18,7 +18,7 @@ inputs:
   target:
     default: .env
     required: false
-    description: 'Dotenv template file in project root to read key=value pairs from'
+    description: 'Dotenv file in project root to write key=value pairs from'
   provider:
     default: github
     required: false
