@@ -1,8 +1,8 @@
 name: Release
 on:
   push:
-    tags:
-      - v*.*.*
+    branches:
+      - latest
 jobs:
   release:
     name: Release
