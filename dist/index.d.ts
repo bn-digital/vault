@@ -23,9 +23,7 @@ export default class VaultEnv {
      * @param from
      * @param to
      */
-    populate(from: string, to: string): {
-        [key: string]: string;
-    };
+    populate(from: string, to: string): void;
     /**
      * Reads secret by provided complete path to secret, including name, e.g. staging/database/username, where "staging" is key-value path
      * @param path

@@ -58,7 +58,7 @@ __metadata:
     "@semantic-release/github": ^7.2.3
     "@semantic-release/npm": ^7.1.3
     "@semantic-release/release-notes-generator": ^9.0.2
-    "@types/node": ^15.12.0
+    "@types/node": ^15.12.1
     "@typescript-eslint/eslint-plugin": ^4.26.0
     "@typescript-eslint/parser": ^4.26.0
     "@zeit/ncc": ^0.22.3
@@ -583,10 +583,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^15.12.0":
-  version: 15.12.0
-  resolution: "@types/node@npm:15.12.0"
-  checksum: d4d82cd60cd6f6030d3882e2cee9c7bdba7a3dd7349925a37320c557fedb730a72dd14ad703b38c45dd52c5e7bdcbdef740bce19c23133661c1dfa1290d763c0
+"@types/node@npm:^15.12.1":
+  version: 15.12.1
+  resolution: "@types/node@npm:15.12.1"
+  checksum: 8a111dc99281e07b1a6408437a09eafb081760aa8bd73d481793345b302a565772c45f2be7fdd7386a8a7ce589a999ccfb513dba15a0b3320dba03c94308253f
   languageName: node
   linkType: hard
 
