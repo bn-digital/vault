@@ -23,6 +23,10 @@ inputs:
     default: github
     required: false
     description: 'Authentication provider (currently supported: github)'
+  working-directory:
+    default: ''
+    required: false
+    description: 'Workspace directory (default is current repository working dir)'
   token:
     default: ''
     required: false

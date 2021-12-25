@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "importHelpers": true,
     "baseUrl": ".",
-    "outDir": "build",
+    "outDir": "lib",
     "esModuleInterop": true,
     "declaration": true,
     "module": "CommonJS",
+    "allowJs": false,
+    "isolatedModules": true,
+    "skipLibCheck": true,
     "moduleResolution": "Node",
     "lib": [
       "ES5",
-      "ESNext"
+      "ES6",
+      "ES7",
+      "DOM"
     ],
     "target": "ES5"
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }

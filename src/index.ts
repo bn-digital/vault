@@ -1,31 +1,19 @@
 import { config } from 'dotenv'
-import NodeVault, { client } from 'node-vault'
+import NodeVault, { client as VaultClient } from 'node-vault'
 import path from 'path'
 import fs from 'fs'
-import { OptionValues } from 'commander'
-import { cyan, green, red, yellow } from 'chalk'
-
-const log = console.log
-export type AuthProviders = 'github'
-
-export type CommandLineArgs = OptionValues & {
-  endpoint?: string
-  token?: string
-  dist?: string
-  file?: string
-  auth?: AuthProviders
-}
+import chalk from 'chalk'
 
 export default class VaultEnv {
-  private readonly vault: client
-  private readonly client: Promise<client>
+  private readonly vault: VaultClient
+  private readonly client: Promise<VaultClient>
 
   /**
    * @param endpoint
    * @param auth
    */
   constructor(endpoint: string, auth: { provider: string; token: string }) {
-    this.vault = NodeVault({ endpoint: endpoint })
+    this.vault = NodeVault({ endpoint: endpoint.endsWith('/') ? endpoint.slice(0, endpoint.length - 1) : endpoint })
 
     if (auth.provider === 'github') {
       this.client = this.vault.githubLogin({ token: auth.token })
@@ -48,15 +36,15 @@ export default class VaultEnv {
         Object.entries(template)
           .sort((a, b) => (a[0] > b[0] ? 1 : -1))
           .forEach(([key, value]) => {
-            log(`Setting ${cyan(key)} from ${green(value)}`)
+            console.log(`Setting ${chalk.cyan(key)} from ${chalk.green(value)}`)
             this.readSecret(value).then((secret) =>
               secret
-                ? fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && log(red(error)))
-                : yellow(`Failed to fetch ${value}`)
+                ? fs.appendFile(envPath, `${key}=${secret}\n`, (error) => error && console.log(chalk.red(error)))
+                : chalk.yellow(`Failed to fetch ${value}`)
             )
           })
       } else {
-        log(red('No template provided'))
+        console.log(chalk.red('No template provided'))
       }
       fs.writeFileSync(envPath, '# Custom variables \n')
       Object.entries(existingValues)
@@ -80,6 +68,6 @@ export default class VaultEnv {
     return await this.client
       .then(() => this.vault.read(secretPath))
       .then((secret) => secret.data.data[searchKey])
-      .catch((reason) => log(red(reason)))
+      .catch((reason) => console.log(chalk.red(reason)))
   }
 }

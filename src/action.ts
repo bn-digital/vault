@@ -2,13 +2,12 @@ import { getInput, setFailed } from '@actions/core'
 import path from 'path'
 import VaultEnv from './index'
 import { config } from 'dotenv'
-
 /**
  * Executes as Github Action entrypoint
  */
 async function run(): Promise<void> {
   config()
-  const workspaceDir = process.env.GITHUB_WORKSPACE
+  const workspaceDir = getInput('working-dir') ?? process.env.GITHUB_WORKSPACE
   try {
     const vaultEnv = new VaultEnv(getInput('endpoint'), {
       provider: getInput('provider'),

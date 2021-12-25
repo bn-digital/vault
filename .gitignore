@@ -1,7 +1,7 @@
 *.log*
 coverage
 node_modules/
-build/
+lib/
 .env*
 !.env.dist
 .yarn/unplugged

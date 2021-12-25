@@ -1,3 +1,12 @@
+import { OptionValues } from 'commander';
+export declare type AuthProviders = 'github';
+export declare type CommandLineArgs = OptionValues & {
+    endpoint?: string;
+    token?: string;
+    dist?: string;
+    file?: string;
+    auth?: AuthProviders;
+};
 export default class VaultEnv {
     private readonly vault;
     private readonly client;
