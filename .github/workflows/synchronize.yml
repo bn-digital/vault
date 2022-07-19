@@ -1,0 +1,55 @@
+on:
+  workflow_call:
+    inputs:
+      secrets:
+        type: string
+        description: Secrets
+        required: false
+        default: ""
+
+jobs:
+  vault:
+    runs-on: self-hosted
+    env:
+      GITHUB_TOKEN: ${{ secrets.BN_GITHUB_TOKEN }}
+    steps:
+      - name: Read from Vault
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          method: github
+          url: ${{ secrets.VAULT_ENDPOINT }}
+          githubToken: ${{ env.GITHUB_TOKEN }}
+          secrets: |
+            infrastructure/data/registry          url                   | DOCKER_REGISTRY             ;
+            infrastructure/data/registry          docker-url            | DOCKER_REGISTRY             ;
+            infrastructure/data/registry          docker-username       | DOCKER_USERNAME             ;
+            infrastructure/data/kubernetes        cluster               | KUBERNETES_CLUSTER          ;
+            infrastructure/data/digitalocean      token                 | DIGITALOCEAN_TOKEN          ;
+            infrastructure/data/spaces            access-key-id         | AWS_ACCESS_KEY_ID           ;
+            infrastructure/data/spaces            secret-access-key     | AWS_SECRET_ACCESS_KEY       ;
+            infrastructure/data/spaces            access-key-id         | SPACES_ACCESS_KEY_ID        ;
+            infrastructure/data/spaces            secret-access-key     | SPACES_SECRET_ACCESS_KEY    ;
+            infrastructure/data/sonarqube         url                   | SONAR_HOST_URL              ;
+            infrastructure/data/sonarqube         token                 | SONAR_TOKEN                 ;
+            infrastructure/data/sentry            organization          | SENTRY_ORG                  ;
+            infrastructure/data/sentry            url                   | SENTRY_URL                  ;
+            infrastructure/data/sentry            token                 | SENTRY_AUTH_TOKEN           ;
+            ${{ inputs.secrets }}
+
+      - name: Write to Github
+        uses: google/secrets-sync-action@v1.7.0
+        with:
+          secrets: |
+            ^AWS_.*
+            ^BN_.*
+            ^DIGITALOCEAN_.*
+            ^DOCKER_.*
+            ^KUBERNETES_.*
+            ^SENTRY_.*
+            ^SONAR_.*
+            ^SPACES_.*
+          repositories: |
+            ${{ github.repository }}
+          dry_run: false
+          github_token: ${{ env.GITHUB_TOKEN }}
+
