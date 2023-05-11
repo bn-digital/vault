@@ -1,0 +1,19 @@
+name: Sync secrets
+on:
+  workflow_call:
+    inputs: {}
+    secrets: {}
+jobs:
+  vault-github:
+    name: Sync global
+    runs-on: self-hosted
+    steps:
+      - name: Set secrets from this repo and organization
+        uses: google/secrets-sync-action@v1.7.1
+        with:
+          secrets: |
+            ^VAULT_.*
+          repositories: |
+            ${{ github.repository_owner }}/${{ github.event.repository.name }}
+          dry_run: false
+          github_token: ${{ secrets.BN_GITHUB_TOKEN }}
