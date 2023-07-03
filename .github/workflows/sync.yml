@@ -9,8 +9,6 @@ jobs:
     name: Sync global
     runs-on: self-hosted
     env:
-      VAULT_ENDPOINT: ${{ secrets.VAULT_ENDPOINT }}
-      VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
       BN_GITHUB_TOKEN: ${{ secrets.BN_GITHUB_TOKEN }}
     steps:
       - name: Set secrets from this repo and organization
