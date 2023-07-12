@@ -12,7 +12,7 @@ jobs:
       BN_GITHUB_TOKEN: ${{ secrets.BN_GITHUB_TOKEN }}
     steps:
       - name: Set secrets from this repo and organization
-        uses: google/secrets-sync-action@v1.7.1
+        uses: jpoehnelt/secrets-sync-action@v1.7.1
         with:
           secrets: |
             ^VAULT_.*
