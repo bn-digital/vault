@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 bn-digital/vault is built on the following main stack:
+
 - [Node.js](http://nodejs.org/) – Frameworks (Full Stack)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
 - [TypeScript](http://www.typescriptlang.org) – Languages
@@ -11,11 +12,13 @@ bn-digital/vault is built on the following main stack:
 - [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 bn-digital/vault is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png' alt='Node.js'/> [Node.js](http://nodejs.org/) – Frameworks (Full Stack)
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/1612/bynNY5dJ.jpg' alt='TypeScript'/> [TypeScript](http://www.typescriptlang.org) – Languages
@@ -25,14 +28,15 @@ bn-digital/vault is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/11563/actions.png' alt='GitHub Actions'/> [GitHub Actions](https://github.com/features/actions) – Continuous Integration
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [bn-digital/vault](https://github.com/bn-digital/vault)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|22<br/>Tools used|11/10/23 <br/>Report generated|
+|25<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -161,9 +165,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (9)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (12)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (9)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (12)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -173,11 +177,14 @@ Full tech stack [here](/techstack.md)
 |[@semantic-release/npm](https://www.npmjs.com/@semantic-release/npm)|v8.0.3|12/25/21|Vlad Volkov |MIT|N/A|
 |[@semantic-release/release-notes-generator](https://www.npmjs.com/@semantic-release/release-notes-generator)|v10.0.3|12/25/21|Vlad Volkov |MIT|N/A|
 |[@types/node](https://www.npmjs.com/@types/node)|v17.0.4|12/25/21|Vlad Volkov |MIT|N/A|
+|[chalk](https://www.npmjs.com/chalk)|v2.4.2|12/25/21|Vlad Volkov |MIT|N/A|
 |[commander](https://www.npmjs.com/commander)|v8.3.0|12/25/21|Vlad Volkov |MIT|N/A|
+|[husky](https://www.npmjs.com/husky)|v7.0.4|12/25/21|Vlad Volkov |MIT|N/A|
+|[semantic-release](https://www.npmjs.com/semantic-release)|v18.0.1|12/25/21|Vlad Volkov |MIT|[CVE-2022-31051](https://github.com/advisories/GHSA-x2pg-mjhr-2m5x) (Moderate)|
 |[ts-node](https://www.npmjs.com/ts-node)|v10.4.0|12/25/21|Vlad Volkov |MIT|N/A|
 |[tslib](https://www.npmjs.com/tslib)|v1.14.1|12/25/21|Vlad Volkov |0BSD|N/A|
 
 <br/>
 <div align='center'>
 
-Generated via [Stack File](https://github.com/apps/stack-file)
+Generated via [Stack File](https://github.com/marketplace/stack-file)
