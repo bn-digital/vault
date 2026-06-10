@@ -7,3 +7,7 @@ lib/
 .yarn/unplugged
 .yarn/install-state.gz
 .yarn/build-state.yml
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
